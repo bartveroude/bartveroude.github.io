@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GPS Location</title>
+    </head>
+    <body>
+        <div id="gpsLocation">Loading...</div>
+        <script>
+            function showGPSLocation(position) {
+                var gpsLocation = document.getElementById("gpsLocation");
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                var altitude = position.coords.altitude;
+
+                gpsLocation.innerHTML = "GPS Location: Latitude " + latitude + ", Longitude " + longitude + ", Altitude " + altitude;
+            }
+
+            window.onload = function() {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(showGPSLocation);
+                } else {
+                    var gpsLocation = document.getElementById("gpsLocation");
+                    gpsLocation.innerHTML = "Geolocation is not available on this browser.";
+                }
+            }
+        </script>
+    </body>
+</html>
